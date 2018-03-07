@@ -14,6 +14,38 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# Checamos la instalación
+
+Estamos ahora trabajando en Ubuntu. Ojalá decidan cambiarse a este sistema operativo.
+
+Lo más complejo de migrar suele ser aprender a instalar cosas pues, aunque algunas cosas cuentan con un ejecutable que se puede instalar desde un package manager, en general las cosas deben instalarse desde línea de comandos. Para ello hay que leer manuales y suele ser engorroso. 
+
+En github, hay algunas instalaciones preparadas por usuarios, tal es el caso de [skalas/massive-adventure-ubuntu](https://github.com/Skalas/massive-adventure-ubuntu).
+
+Hay muchos ejecutables pero lo importante para poder tomar ese repositorio -luego entramos en detalles de github- es que tengan instalado git. Para eso, en todos los Sistemas Operativos (SO) basados en debian (como ubuntu) deben ejecutar en la terminal (ctrl + alt + t):
+
+```
+sudo apt-get install -y git curl libcurl4-openssl-dev build-essential
+mkdir -p $HOME/src
+```
+
+Despues, donde esten digiten:
+
+```
+cd
+mkdir repos_utiles
+cd repos_utiles
+git clone https://github.com/Skalas/massive-adventure-ubuntu.git
+cd massive-adventure-ubuntu
+./i_bash_tools.sh
+./i_docker.sh
+./i_pyenv.sh
+```
+
+Despues (ahorita saturariamos la red) instalen otras cosas como `i_R.sh` o `i_python.sh`.
+
+# Bash - basico
+
 **NOTA**: Esta *lecture* está basada parcialmente en las notas del curso C4P de California Polytechnic State University, San Luis Obispo
 
 # Introducción
@@ -178,7 +210,7 @@ parámetro un nombre de archivo.
 
 - Vamos a crear un archivo de texto, para esto usaremos **GNUEmacs**. **GNU Emacs** es un editor de textos muy poderoso. Lo
 aprenderemos en la clase (y quizá en algún seminario). Por el momento
-teclea `emacs hola.txt` y presiona enter (la primera vez que lo corras
+teclea `emacs hola.txt` (puedes usar `nano hola.txt` si no tienes emacs) y presiona enter (la primera vez que lo corras
 puede tardar mucho, está instalando toda la configuración para la
 clase).
 - Aparecerá una barra de menú abajo. Esto indica que ya estás en **GNU

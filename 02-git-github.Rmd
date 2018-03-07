@@ -55,7 +55,7 @@ así lo deseas.
 
 ### Windows
 
-Windows no será el sistema operativo que utilizaremos en este diplomado. Sin 
+Windows no será el sistema operativo que utilizaremos en este taller. Sin 
 embargo, si lo quieren incorporar fuera de la máquina virtual, deberán instalar
 git y el emulador de consola de éste. [En esta liga](http://msysgit.github.io/) 
 encontrarás el ejecutable para instalar en Windows.
@@ -356,7 +356,7 @@ computadora.
 
 Si no se configuran las credenciales, cada vez que quieras hacer `clone`, 
 `pull` o `push` de un repositorio privado, te pedirá tus credenciales. Dado que
-el repo del diplomado es privado, configuremos.
+el repo del taller es privado, configuremos.
 
 ### ssh 
 
@@ -368,14 +368,14 @@ conectar tu versión local de los respositorios con github.
 
 ### https
 
-You can also set it up via https and caching your credential by using the [credential helper](https://help.github.com/articles/caching-your-github-password-in-git/)
+También se puede configurar vía https and guardar las credenciales usando el [credential helper](https://help.github.com/articles/caching-your-github-password-in-git/)
 
-## El repositorio del diplomado
+## El repositorio del taller
 
 El repositorio está en:
 
 ```
-https://github.com/ITAM-DS/diplomado-bbva
+https://github.com/animalito/basic-toolkit
 ```
 
 Lo primero que hay que hacer es **forkear** este repositorio. La
@@ -389,7 +389,7 @@ de **clonar** su repositorio:
 
 
 Una vez que tengas configuradas tus credenciales, asegurate de clonar tus repositorios
-usando el conector ssh apropiado, es decir, vayan al [repo del diplomado](https://github.com/ITAM-DS/diplomado-bbva) y vayan a la sección de
+usando el conector ssh apropiado, es decir, vayan al [repo del taller](https://github.com/animalito/basic-toolkit) y vayan a la sección de
 *Clone or download* en la esquina superior derecha. Pueden copiar el link directo de la interfaz como se muestra en la imagen. 
 
 ![](img/clone_ssh.png)
@@ -407,14 +407,14 @@ Después, se van a la terminal, buscan el directorio en el que quieren tener
 su repositorio y lo clonan ahí.
 
 ```
-git clone https://github.com/<usuario_github>/diplomado-bbva.git
+git clone https://github.com/<usuario_github>/basic-toolkit.git
 ```
 
-Esto creará una carpeta `diplomado-bbva` en su directorio en el que lo hayan 
+Esto creará una carpeta `basic-toolkit` en su directorio en el que lo hayan 
 puesto. Por ahora, supongamos que lo clonaron directo en su `$HOME`.
 
 Ve a la carpeta `alumnos` y crea una carpeta cuyo nombre sea tu nombre
-de usuario en github. En esta carpeta realizarás las tareas,
+de usuario en github. En esta carpeta realizarás los ejercicios,
 proyectos, etc.
 
 Crea dentro de tu carpeta un archivo que se llame `prueba.txt`,
@@ -437,8 +437,8 @@ símbolo de `+` para agregar un archivo (verifica de nuevo que estés en
 tu carpeta). Llamalo `prueba2.txt` y agrega algo de texto. Para
 guardar los cambios aprieta el botón `Commit new file`.
 
-En tu computadora, en `docker` en la carpeta
-`big-data`, para obtener los últimos cambios utiliza:
+En tu computadora, en la carpeta
+`basic-toolkit`, para obtener los últimos cambios utiliza:
 
 ```
 git pull origin master
@@ -446,37 +446,37 @@ git pull origin master
 
 En tu carpeta debería de aparecer el archivo `prueba2.txt`. Ahora
 quedan por contestar dos preguntas: (1) ¿Cómo actualizo el repositorio
-`ITAM-DS/diplomado-bbva` (para entregar tarea, por ejemplo)
+`tu-usuario/basic-toolkit` con cambios que yo realicé?
 y (2) ¿Cómo actualizo mi repositorio con los cambios del repositorio
-de `ITAM-DS/diplomado-bbva`? (para bajar las notas que los profesores van subiendo)
+de `animalito/basic-toolkit`? (para bajar las notas nuevas que se van subiendo)
 
 Para ambas preguntas es necesario aclarar el concepto de los `remote`:
 Si ejecutas
 
 ```
 git remote -v
-origin  https://github.com/<usuario>/diplomado-bbva.git (fetch)
-origin  https://github.com/<usuario>/diplomado-bbva.git (push)
+origin  https://github.com/<usuario>/basic-toolkit.git (fetch)
+origin  https://github.com/<usuario>/basic-toolkit.git (push)
 ```
 
 Vamos a agregar como `remote` el repositorio
-`ITAM-DS/diplomado-bbva`:
+`animalito/basic-toolkit`:
 
 ```
-git remote add diplomado https://github.com/ITAM-DS/diplomado-bbva.git
+git remote add taller https://github.com/animalito/basic-toolkit.git
 ```
 
 Ejecuta de nuevo `git remote -v`
 
 ```
 git remote -v
-origin  https://github.com/ITAM-DS/diplomado-bbva.git (fetch)
-origin  https://github.com/ITAM-DS/diplomado-bbva.git (push)
-diplomado      https://github.com/ITAM-DS/diplomado-bbva.git (fetch)
-diplomado      https://github.com/ITAM-DS/diplomado-bbva.git (push)
+origin  https://github.com/animalito/basic-toolkit.git (fetch)
+origin  https://github.com/animalito/basic-toolkit.git (push)
+taller      https://github.com/animalito/basic-toolkit.git (fetch)
+taller      https://github.com/animalito/basic-toolkit.git (push)
 ```
 
-Entonces, la respuesta a la primera pregunta (¿cómo entrego mi tarea) 
+Entonces, la respuesta a la primera pregunta (¿cómo entrego mis ejercicios) 
 es una técnica llamada `pull-request` que en
 mi conocimiento **solo** se puede realizar desde el navegador. Has
 click en `Pull Requests` (como se muestra en la imagen) 
@@ -487,7 +487,7 @@ y sigue las instrucciones de la pantalla.
 Una vez **autorizado** el `pull-request` es necesario hacer
 
 ```
-git pull diplomado master
+git pull taller master
 git push origin master
 ```
 
@@ -499,7 +499,7 @@ Para responder la segunda pregunta (¿cómo bajo lo que han subido otros al repo
 usamos la misma cadena de comandos:
 
 ```
-git pull diplomado master
+git pull taller master
 git push origin master
 ```
 
@@ -515,19 +515,19 @@ y pronto te será muy natural.
 
 > Trabajo en equipo usando git
 
-Una posible forma de utilizar un worklow distribuido en equipos es el [Integration Manager Workflow](http://git-scm.com/book/en/Distributed-Git-Distributed-Workflows#Integration-Manager-Workflow). En particular, este es el flujo que utilizaremos en el diplomado pues
+Una posible forma de utilizar un worklow distribuido en equipos es el [Integration Manager Workflow](http://git-scm.com/book/en/Distributed-Git-Distributed-Workflows#Integration-Manager-Workflow). En particular, este es el flujo que utilizaremos en el taller pues
 ustedes no tienen permisos de escribir en el repositorio de clase de manera directa, es decir,
 siempre deben de pasar por un **pull request** que debe ser autorizado por el 
 profesor.
 
 > **Ejercicio**
 > En esta parte, realizaremos un ejemplo completo del workflow que se espera
-> utilicen para entregar sus tareas y proyectos.
+> utilicen para entregar sus ejercicios.
 
 Asumiendo que clonaron en su home (sino vayan al lugar donde tienen el folder del repo).
 
 ```
-cd diplomado-bbva
+cd basic-toolkit
 git pull origin master # SIEMPRE empezamos con un pull. ¿Por qué?
 ```
 
@@ -560,9 +560,9 @@ nothing to commit, working directory clean
 
 - En tu repo están tus cambios.
 
-Cuando quieran enviar la tarea realizan el `pull-request`. Y habrán
-terminado si en el repositorio `ITAM-DS/diplomado-bbva`
-están sus cambios. Los profesores no aceptarán sus cambios si su tarea rompe el 
+Cuando quieran enviar los ejercicios que realizan el `pull-request`. Y habrán
+terminado si en el repositorio `animalito/basic-toolkit`
+están sus cambios. No se aceptarán sus cambios si con ellos se rompe el 
 trabajo de alguien más. Por eso es que estaremos utilizando este workflow.
 
 
@@ -583,7 +583,7 @@ extensiones que por default nunca te mostrará a la hora de pedir un `git status
 Para *overridear* el `.gitignore` se debe de agregar el archivo con la bandera `-f`. Piensen
 muy bien antes de hacer esto pero a veces es necesario. 
 
-El repositorio que compartimos tiene uno en el *home* [del repo](https://github.com/ITAM-DS/diplomado-bbva/blob/master/.gitignore).
+El repositorio que compartimos tiene uno en el *home* [del repo](https://github.com/animalito/basic-toolkit/blob/master/.gitignore).
 
 Se pueden poner tantos `.gitignore` como subfolders existan en un repositorio y
 aplican de arriba hacia abajo, es decir, aplican para el lugar en donde estén y 

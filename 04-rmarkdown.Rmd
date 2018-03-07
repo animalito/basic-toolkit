@@ -1,0 +1,151 @@
+---
+title: "Editores y rmarkdown"
+output: html_document
+---
+
+```{r setup, include=F}
+knitr::opts_chunk$set(echo = T, error = F, message = F, warning = F)
+```
+
+# Editores
+
+Hay muchísimos, en particular se mencionarán dos.
+
+## RStudio
+
+Puedes descargar [RStudio](https://www.rstudio.com/products/rstudio/download/) 
+siguiendo las instrucciones para cada sistema operativo. RStudio es un IDE (integrated
+development environment) para R que incluye consola, editor de texto, memoria de 
+gráficos, vista de objetos en el ambiente y otras herramientas útiles para 
+desarrollar \parencite{rstudio}. En su versión más reciente, también autocompleta código 
+y depura (*debugging*) "al vuelo", es decir, al mismo tiempo que se escribe, señala
+potenciales errores de código. 
+
+Hay que tener cuidad con el uso de la memoria RAM de este editor pues utiliza muchos recursos de la computadora y -cuando 
+están usando una gran cantidad de datos o procesos muy pesados- RStudio suele 
+detenerse fácilmente. Buenas prácticas en general: guardar seguido, seguir 
+un flujo de trabajo (*workflow*) aunado a controlador de versiones (o algún tipo de respaldo) y, sobretodo,
+crear las funciones, lógica, algoritmos, con una muestra de los datos.
+
+## ESS
+
+[Emacs speaks statistics](http://ess.r-project.org/) es el add-on favorito para
+los usuarios de `emacs` y `R` \parencite{rossini2004ess}. Soporta la edición de scripts para R, S-plus, SAS,
+Stata, OPenBUGS/JAGS. Para los que además ya están acostumbrados al enorme poder
+de Emacs, ésta será la mejor opción.
+
+El editor interactivo es muy bueno y casi no consume memoria.
+
+# Rutas relativas vs. Rutas absolutas
+
+El resultado que se muestra aquí al usar el comando `pwd` depende de la computadora en la que se esta 
+trabajando debido a que es una *ruta absoluta*. Esto es una ruta absoluta, es decir, es tal que da la ruta (*path*) completo
+al directorio en cuestión. Puedes accesar todos los directorios o archivos usando su ruta absoluta.
+
+En investigación reproducible (*reproducible research*), en investigación colaborativa o
+incluso cuando trabajas en varias computadoras es una buena idea usar rutas relativas
+en lugar de absolutas. Esto hace que el código sea menos dependiente de una estructura
+de archivos o computadora en particular.
+
+En general, es *buena práctica* configurar el código de un proyecto con rutas relativas.
+En `R` en particular, cuando guardas un *Rmarkdown* y lo corres desde la línea de
+comandos (o lo *tejes* desde *RStudio*), la ruta que está fija -como si hubieras usado el comando `setwd()` es
+en donde *vive* ese archivo, es decir, el directorio en donde está guardado el mismo.
+
+Desde cualquier `script` puedes llamar a otros usando este tipo de ruta como en 
+el ejemplo anterior.
+
+# rmarkdown
+
+Es posible generar documentos reproducibles en `R` utilizando `R Markdown`, un 
+*framework* que permite salvar y ejecutar código, así como generar reportes de
+alta calidad en múltiples formatos. Para utilizarlo,
+se instala el paquete `rmarkdown` con el comando:
+
+```{r, eval = F}
+install.packages("rmarkdown")
+```
+
+Para generar un documento, se necesitan conocer únicamente algunos elementos 
+importantes. La extensión que se suele utilizar para estos documentos es `.Rmd`
+o `.rmd`.
+
+## Encabezado y formatos
+
+El primer elemento es el encabezado y se conoce como el `yaml` o `front-matter`. Se
+coloca en la parte superior del documento y corresponde a las opciones que
+ofrece `pandoc` para la generación de documentos.
+
+Éste contiene la especificación de elementos como el título del documento, autor, fecha,
+entre otros. Además, se especifica el formato de salida del documento.
+
+Para crear un documento en HTML, por ejemplo, es necesario especificar como el 
+`output` del documento `html_output` y se ve como sigue:
+
+```
+---
+title: "Un título"
+author: "Un autor"
+date: "Una fecha"
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 2
+    toc_float: true
+    theme: spacelab
+---
+
+```
+
+En este ejemplo, se colocaron opciones adicionales para el documento HTML como
+el que incluya una tabla de contenidos (`toc: yes`), que la profundidad de
+dicha tabla de contenidos incluya los primeros dos niveles de encabezados (`toc_depth: 2`),
+que la tabla de contenidos sea flotante -que se encuentre fija en una barra
+a la izquierda del documento aunque se desplace el documento (`toc_float: true`)
+y, por último, se especifica el tema para la estética del documento (`theme: spacelab`).
+
+Existen muchas otras opciones, mismas que puedes encontrar en 
+[la documentación](http://rmarkdown.rstudio.com/html_document_format.html).
+
+Es posible también especificar como salida para el documento un pdf con la 
+opción `pdf_document`. Las opciones se encuentran también en 
+[la documentación](http://rmarkdown.rstudio.com/pdf_document_format.html). 
+Esta opción es conveniente cuando se tiene conocimiento previo de LaTeX.
+
+Por último, cabe mencionar la opción `word_document`, cuyas opciones se encuentran [aquí](http://rmarkdown.rstudio.com/word_document_format.html) y la opción `md_document` que compila a Markdown.
+
+Así como es posible generar documentos, es posible crear presentaciones en HTML (ioslides o slidy)
+o pdf (beamer) y dashboards (con flexdashboards).
+
+En `03-markdown` se detalla la sintaxis de Markdown, misma
+que permitirá escribir documentos.
+
+## Knitr chunks
+
+Entre distintas líneas de texto, es posible incluir `chunks` o *pedazos* de 
+código de `R`. Para iniciar un pedazo de código, se incluyen tres acentos 
+invertidos, seguidos de la letra *r* entre llaves; se cierra un pedazo de código
+con tres acentos invertidos.
+
+
+```{r}
+paste("Hola", "Mundo")
+```
+
+Se puede incluir un pedazo de código en cualquier parte del documento y se controlan
+las opciones de cada pedazo, por ejemplo, incluyendo una opción para que el
+código no se imprima y que solo se imprima el resultado agregando `r, echo = F`:
+
+```{r, echo = F}
+paste("Hola", "Mundo")
+```
+
+## Plots
+
+Tambien pueden incluirse graficos, por ejemplo:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Con el parametro `echo = FALSE` no se imprime el codigo que genera el grafico en el documento final.
